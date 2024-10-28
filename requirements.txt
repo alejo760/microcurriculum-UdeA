@@ -1,0 +1,9 @@
+streamlit
+langchain
+python-docx
+chromadb
+groq
+langchain-groq
+transformers
+torch
+sentence-transformers
