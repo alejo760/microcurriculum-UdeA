@@ -5,8 +5,8 @@ from docx import Document
 from docx.shared import Pt
 from docx.shared import Inches
 from io import BytesIO
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import Chroma
 
 # Updated initialization with model_name
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")

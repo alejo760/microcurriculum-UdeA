@@ -1,12 +1,13 @@
 streamlit
-langchain
+langchain>=0.0.298
+langchain-huggingface
 python-docx
-chromadb
+chromadb>=0.4.0
 groq
 langchain-groq
 transformers
 torch
 sentence-transformers
-langchain-community
 pysqlite3-binary
 protobuf==3.20.3
+duckdb>=0.7.1
