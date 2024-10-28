@@ -1,7 +1,7 @@
 
-# 🩺 Microcurriculum UdeA con IA
-
 ![Logo UdeA](UdeA+simplificado-01.png)
+
+# 🩺 Microcurriculum UdeA con IA
 
 Bienvenido al proyecto **Microcurriculum UdeA con IA**. Esta aplicación utiliza inteligencia artificial para ayudar en la creación y mejora de microcurrículos para cursos de pregrado y posgrado en la Universidad de Antioquia.
 
