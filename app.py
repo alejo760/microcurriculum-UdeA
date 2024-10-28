@@ -1,13 +1,15 @@
 from groq import Groq
 from langchain_groq import ChatGroq
 import streamlit as st
-import streamlit as st
 from docx import Document
 from docx.shared import Pt
 from docx.shared import Inches
 from io import BytesIO
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_community.embeddings import HuggingFaceEmbeddings
+
+# Updated initialization with model_name
+embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
 # Verificar que la clave de API se ha cargado
 api_key= st.secrets.API_KEY
