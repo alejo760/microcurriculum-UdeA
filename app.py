@@ -7,7 +7,9 @@ from docx.shared import Inches
 from io import BytesIO
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import Chroma
-
+import os
+# Verificar que la clave de API se ha cargado
+api_key= os.environ.get("API_KEY")
 # Updated initialization with model_name
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 # Load the vector databases
@@ -15,9 +17,7 @@ vectordb_PEI = Chroma(persist_directory="./vector_db_PEI2", embedding_function=e
 vectordb_guia = Chroma(persist_directory="./vector_db_guia2", embedding_function=embeddings)
 # Prepare the list of vector databases
 vectordb_list = [vectordb_PEI, vectordb_guia]
-# Verificar que la clave de API se ha cargado
-api_key= "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"
-# Inicializar el cliente de Groq
+
 client = Groq(api_key=api_key)
 
 # Inicializar el modelo de chat
@@ -46,13 +46,10 @@ def mejorar_texto_con_IA(var_name, var_value, vectordb_list, nombre_curso):
         context_docs.extend([doc.page_content for doc in docs])
     context = "\n".join(context_docs)
     prompt = f"""Tu eres una inteligencia artificial experta en pedagogia. Tu tarea es mejorar el siguiente microcurriculum del curso {nombre_curso} texto en la sección {var_name} teniendo en cuenta el contexto proporcionado. Solo dame el texto mejorado
-
                 Contexto:         
                 {context}
-
                 Texto:
                 {var_value}
-
                 Texto mejorado:"""
     improved_text = chat_groq.invoke(prompt)
     improved_text = improved_text.content
@@ -578,4 +575,3 @@ if st.button("Descargar Microcurriculum"):
         file_name=f"Microcurriculum_{variables['nombre_curso']}.docx",
         mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     )
-
