@@ -10,9 +10,13 @@ from langchain.vectorstores import Chroma
 
 # Updated initialization with model_name
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
-
+# Load the vector databases
+vectordb_PEI = Chroma(persist_directory="./vector_db_PEI2", embedding_function=embeddings)
+vectordb_guia = Chroma(persist_directory="./vector_db_guia2", embedding_function=embeddings)
+# Prepare the list of vector databases
+vectordb_list = [vectordb_PEI, vectordb_guia]
 # Verificar que la clave de API se ha cargado
-api_key= st.secrets.API_KEY
+api_key= "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"
 # Inicializar el cliente de Groq
 client = Groq(api_key=api_key)
 
@@ -228,10 +232,6 @@ with st.expander("RELACIONES CON EL PERFIL"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f'Mejorando {var_name} con IA...'):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, relaciones_perfil, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -255,10 +255,6 @@ with st.expander("INTENCIONALIDADES FORMATIVAS"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f'Mejorando {var_name} con IA...'):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, intencionalidades, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -283,10 +279,6 @@ with st.expander("APORTES DEL CURSO A LA FORMACIÓN INTEGRAL Y A LA FORMACIÓN E
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, aportes_formacion, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -309,10 +301,6 @@ with st.expander("APORTES DEL CURSO A LA FORMACIÓN INTEGRAL Y A LA FORMACIÓN E
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, lineas_sentido, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -335,10 +323,6 @@ with st.expander("APORTES DEL CURSO A LA FORMACIÓN INTEGRAL Y A LA FORMACIÓN E
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, derrotero_preguntas, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -362,10 +346,6 @@ with st.expander("DESCRIPCIÓN DE LOS CONOCIMIENTOS Y/O SABERES"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, descripcion_conocimientos, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -409,10 +389,6 @@ with st.expander("METODOLOGÍA"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, metodologia, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -435,10 +411,6 @@ with st.expander("METODOLOGÍA"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, medios_recursos, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -461,10 +433,6 @@ with st.expander("METODOLOGÍA"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, formas_interaccion, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -487,10 +455,6 @@ with st.expander("METODOLOGÍA"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, estrategias_internacionalizacion, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -513,10 +477,6 @@ with st.expander("METODOLOGÍA"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f"Mejorando {var_name} con IA..."):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, estrategias_diversidad, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -541,10 +501,6 @@ with st.expander("EVALUACIÓN"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f'Mejorando {var_name} con IA...'):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, concepcion_evaluacion, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -567,10 +523,6 @@ with st.expander("EVALUACIÓN"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f'Mejorando {var_name} con IA...'):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, procesos_aprendizaje, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context
@@ -593,10 +545,6 @@ with st.expander("EVALUACIÓN"):
     if st.button("Mejorar con IA✨", key='btn_' + var_name):
         with st.spinner(f'Mejorando {var_name} con IA...'):
             try:
-                embeddings = HuggingFaceEmbeddings()
-                vectordb_PEI = Chroma(persist_directory="./vector_db_PEI", embedding_function=embeddings)
-                vectordb_guia = Chroma(persist_directory="./vector_db_guia", embedding_function=embeddings)
-                vectordb_list = [vectordb_PEI, vectordb_guia]
                 improved_text, context = mejorar_texto_con_IA(var_name, momentos_evaluacion, vectordb_list, nombre_curso)
                 st.session_state['improved_' + var_name] = improved_text
                 st.session_state['context_' + var_name] = context

@@ -33,7 +33,7 @@ def create_vector_db(pdf_path, db_directory):
     print(f"Vector database created at {db_directory}")
 
 # Create vector database for PEI.pdf
-create_vector_db("PEI.pdf", "./vector_db_PEI")
+create_vector_db("PEI.pdf", "./vector_db_PEI2")
 
 # Create vector database for guia.pdf
-create_vector_db("guia.pdf", "./vector_db_guia")
+create_vector_db("guia.pdf", "./vector_db_guia2")
